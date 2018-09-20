@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,13 @@ namespace TodoApiSample.Controllers
         [HttpGet]
         public IEnumerable<TodoItem> GetAll()
         {
+            _logger.LogTrace("this is trace log info");
+            _logger.LogDebug("this is debug log info");
+            _logger.LogInformation("this is infomation log info");
+            _logger.LogWarning("this is warn log info");
+            _logger.LogError("this is error log info");
+            _logger.LogCritical("this is critical log info");
+            Debug.WriteLine("fasfdsfsdfsfdsfdsf","info");
             using (_logger.BeginScope("Message {HoleValue}", DateTime.Now))
             {
                 _logger.LogInformation(LoggingEvents.ListItems, "Listing all items");
