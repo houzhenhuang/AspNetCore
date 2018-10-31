@@ -1,4 +1,4 @@
-﻿const uri = 'api/todo';
+﻿const uri = '../api/todo';
 let todos = null;
 function getCount(data) {
     const el = $('#counter');
@@ -27,10 +27,10 @@ function getData() {
             $.each(data, function (key, item) {
                 const checked = item.isComplete ? 'checked' : '';
 
-                $('<tr><td><input disabled="true" type="checkbox" ' + checked + '></td>' +
+                $('<tr><td scope="row"><input disabled="true" type="checkbox" ' + checked + '></td>' +
                     '<td>' + item.name + '</td>' +
-                    '<td><button onclick="editItem(' + item.id + ')">Edit</button></td>' +
-                    '<td><button onclick="deleteItem(' + item.id + ')">Delete</button></td>' +
+                    '<td><button class="btn btn-success" onclick="editItem(' + item.id + ')">Edit</button></td>' +
+                    '<td><button class="btn btn-danger" onclick="deleteItem(' + item.id + ')">Delete</button></td>' +
                     '</tr>').appendTo($('#todos'));
             });
 
@@ -41,7 +41,7 @@ function getData() {
 
 function addItem() {
     const item = {
-        'name': $('#add-name').val(),
+        'name': $('#todoInputName').val(),
         'isComplete': false
     };
 
@@ -56,7 +56,7 @@ function addItem() {
         },
         success: function (result) {
             getData();
-            $('#add-name').val('');
+            $('#todoInputName').val('');
         }
     });
 }

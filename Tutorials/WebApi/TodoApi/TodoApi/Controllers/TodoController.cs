@@ -32,7 +32,7 @@ namespace TodoApi.Controllers
             return await _todoContext.TodoItems.ToListAsync();
         }
 
-        [HttpGet("{id}", Name = "GetTodo")]
+        [HttpGet("GetByIdTest/{id}", Name = "GetTodo")]
         public async Task<ActionResult<TodoItem>> GetById(long id)
         {
             var item =await  _todoContext.TodoItems.FindAsync(id);
