@@ -1,0 +1,69 @@
+﻿@model List<TagHelpersBuiltIn.Controllers.Speaker>
+@{
+    ViewData["Title"] = "Speakers";
+
+    var parms = new Dictionary<string, string>
+{
+{ "speakerId", "11" },
+{ "currentYear", "true" }
+};
+
+}
+
+<h2>Speakers</h2>
+@foreach (var speaker in Model)
+{
+    <li><a href="/Speaker/@speaker.SpeakerId">@speaker.SpeakerId</a></li>
+}
+@*asp-controller*@
+<a asp-controller="Speaker" asp-action="Index">All Speakers</a><br />
+<a asp-controller="Speaker">All Speakers</a><br />
+
+@*asp-action*@
+<a asp-controller="Speaker"
+   asp-action="Evaluations">Speaker Evaluations</a><br />
+@*asp-route-{value}*@
+<a asp-controller="Speaker"
+   asp-action="Detail"
+   asp-route-id="@Model[0].SpeakerId">SpeakerId:@Model[0].SpeakerId</a><br />
+
+<a asp-controller="Speaker"
+   asp-action="Detail"
+   asp-route-speakerid="@Model[0].SpeakerId">SpeakerId:@Model[0].SpeakerId</a><br />
+
+@*asp-route*@
+<a asp-route="speakerevals">Speaker Evaluations</a><br />
+
+@*asp-all-route-data*@
+<a asp-route="speakerevalscurrent"
+   asp-all-route-data="parms">Speaker Evaluations</a><br />
+
+@*asp-fragment*@
+<a asp-controller="Speaker"
+   asp-action="Evaluations"
+   asp-fragment="SpeakerEvaluations">Speaker Evaluations</a><br />
+
+@*asp-area*@
+<a asp-area="Blogs"
+   asp-controller="Home"
+   asp-action="AboutBlog">About Blog</a><br />
+
+
+@*<cache>@DateTime.Now</cache>*@
+<cache>
+    @DateTime.Now
+</cache>
+<br />
+<cache enabled="false">
+    Current Time Inside Cache Tag Helper: @DateTime.Now
+</cache>
+<br />
+<cache expires-on="@new DateTime(2018,11,06,14,41,0)">
+    Current Time Inside Cache Tag Helper: @DateTime.Now
+</cache>
+
+
+
+@section Scripts{ 
+    @await  Html.PartialAsync("_ValidationScriptsPartial")
+}

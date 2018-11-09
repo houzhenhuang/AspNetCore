@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace AuthoringTagHelpers.TagHelpers
 {
+    /// <summary>
+    /// 最小的标记帮助程序
+    /// </summary>
     public class EmailTagHelper : TagHelper
     {
 #if MailTo
@@ -24,7 +27,12 @@ namespace AuthoringTagHelpers.TagHelpers
         }
 #elif GetContent
         private const string EmailDomain = "contoso.com";
-
+        /// <summary>
+        /// SetAttribute 和 SetContent
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="output"></param>
+        /// <returns></returns>
         public async override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "a";
